@@ -3,16 +3,16 @@
 # Используйте API Foursquare для поиска заведений в указанной категории.
 # Получите название заведения, его адрес и рейтинг для каждого из них.
 # Скрипт должен вывести название и адрес и рейтинг каждого заведения в консоль.
-
+from typing import List, Dict, Any
 
 import requests
 from fake_useragent import UserAgent
 
 ua = UserAgent() #### для указания "браузера"
-category = input("Введите название интересующей Вас категории на английском языке (например: Park, Zoos, Museums и т.п.) : ")
+category = input("Введите название интересующей Вас категории на английском языке (например: Cafe, Fitness, Park, Zoos, Museums и т.п.) : ")
 url = "https://api.foursquare.com/v3/places/search"
 params = {
-    'limit': 5,
+    'limit': 10,
     'query': category,
     'fields': 'name,location,rating'}
 
@@ -30,14 +30,14 @@ else:
 data = response.json()
 ### pprint(data) ### для отображения структуры ответа
 
-establishments = []
+facilitys = []
 for place in data['results']:
     place_name = place.get('name')
     place_address = place.get('location')['formatted_address']
     place_rating = place.get('rating') if 'rating' in place else "Рейтинг не определялся"
-    establishments.append({'name': place_name, 'address': place_address, 'rating': place_rating})
-for establishment in establishments:
-        print(f"Название: {establishment['name']}")
-        print(f"Адрес: {establishment['address']}")
-        print(f"Рейтинг: {establishment['rating']}")
+    facilitys.append({'name': place_name, 'address': place_address, 'rating': place_rating})
+for facility in facilitys:
+        print(f"Название: {facility['name']}")
+        print(f"Адрес: {facility['address']}")
+        print(f"Рейтинг: {facility['rating']}")
         print()
