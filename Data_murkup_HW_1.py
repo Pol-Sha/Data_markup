@@ -8,8 +8,8 @@ from typing import List, Dict, Any
 import requests
 from fake_useragent import UserAgent
 
-ua = UserAgent() #### для указания "браузера"
-category = input("Введите название интересующей Вас категории на английском языке (например: Cafe, Fitness, Park, Zoos, Museums и т.п.) : ")
+UA = UserAgent() #### для указания "браузера"
+category = input("Введите место на английском языке (например: cafe, fitness, park, bridge, restaurant, Zoos, Museums и т.п.) : ")
 url = "https://api.foursquare.com/v3/places/search"
 params = {
     'limit': 10,
@@ -17,7 +17,7 @@ params = {
     'fields': 'name,location,rating'}
 
 headers = {
-    "User-Agent": ua.firefox,
+    "User-Agent": UA.firefox,
     "Accept": "application/json",
     "Authorization": "fsq3P6zWw5hrHAp69JoTu+0TFeYEBCEXDIo7+Ivypcz/4Uo="}
 
