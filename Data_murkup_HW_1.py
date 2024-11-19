@@ -33,7 +33,7 @@ data = response.json()
 facilitys = []
 for place in data['results']:
     place_name = place.get('name')
-    place_address = place.get('location')['formatted_address']
+    place_address = place.get('location', {}).get('formatted_address', 'Адрес не указан')
     place_rating = place.get('rating') if 'rating' in place else "Рейтинг не определялся"
     facilitys.append({'name': place_name, 'address': place_address, 'rating': place_rating})
 for facility in facilitys:
