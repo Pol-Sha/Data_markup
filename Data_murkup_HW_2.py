@@ -49,5 +49,7 @@ while params['page'] <= 50 :
     params['page']+= 1
 
 pprint(all_books)
+with open('all_books.json', 'w', encoding='utf-8') as fp:
+    json.dump(all_books, fp, ensure_ascii=False, indent=2)
 
 
