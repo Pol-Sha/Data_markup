@@ -30,29 +30,29 @@ table = dom.xpath("//table[@class='data']//tr")
 data = []
 for row in table:
     # Использование выражения XPath для выбора одной строки из таблицы и получение текста в виде списка
-    cells = row.xpath(".//td/text()")
-    if cells:
+    row_info = row.xpath(".//td/text()")
+    if row_info:
         currency = {}
 
         # формат столбца 'код валюты' str->int
         try:
-            currency['digital_code'] = int(cells[0])
+            currency['digital_code'] = int(row_info[0])
         except ValueError:
             currency['digital_code'] = None
 
-        currency['letter_code'] = cells[1]
+        currency['letter_code'] = row_info[1]
 
         # формат столбца 'единицы' str->int
         try:
-            currency['units'] = int(cells[2])
+            currency['units'] = int(row_info[2])
         except ValueError:
             currency['units'] = None
 
-        currency['name'] = cells[3]
+        currency['name'] = row_info[3]
 
         # формат столбца 'курс' str->float
         try:
-            currency['rate'] = float(cells[4].replace(',', '.'))
+            currency['rate'] = float(row_info[4].replace(',', '.'))
         except ValueError:
             currency['rate'] = None
 
